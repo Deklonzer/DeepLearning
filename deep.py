@@ -19,10 +19,11 @@ Specifically for vision, we have created a package called
 Imagenet, CIFAR10, MNIST, etc. and data transformers for images, viz.,
 ``torchvision.datasets`` and ``torch.utils.data.DataLoader``.
 This provides a huge convenience and avoids writing boilerplate code.
-For this tutorial, we will use the HDR dataset located here: https://medusa.fit.vutbr.cz/traffic/research-topics/general-traffic-analysis/holistic-recognition-of-low-quality-license-plates-by-cnn-using-track-annotated-data-iwt4s-avss-2017/
-It has the classes: ‘airplane’, ‘automobile’, ‘bird’, ‘cat’, ‘deer’,
-‘dog’, ‘frog’, ‘horse’, ‘ship’, ‘truck’. The images in the dataset are of
-*** size 3x32x32, i.e. 3-channel color images of 32x32 pixels in size.
+
+
+For this project, we will use the HDR dataset located here: https://medusa.fit.vutbr.cz/traffic/research-topics/general-traffic-analysis/holistic-recognition-of-low-quality-license-plates-by-cnn-using-track-annotated-data-iwt4s-avss-2017/
+It has the classes: ****
+
 .. figure:: /_static/img/cifar10.png
    :alt: cifar10
    cifar10
@@ -35,14 +36,14 @@ We will do the following steps in order:
 3. Define a loss function
 4. Train the network on the training data
 5. Test the network on the test data
-
-
-
-
-1. Loading and normalizing CIFAR10
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Using ``torchvision``, it’s extremely easy to load CIFAR10.
 """
+
+
+########################################################################
+#1. Loading and normalizing the license plate dataset.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#Using ``torchvision``, it’s extremely easy to load the dataset.
+
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -75,6 +76,7 @@ trainloader = torch.utils.data.DataLoader(
 #trainloader = torch.utils.data.DataLoader(trainset, batch_size=4,
 #                                          shuffle=True, num_workers=2)
 
+# ***** Change classes!
 classes = ('plane', 'car', 'bird', 'cat',
            'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
