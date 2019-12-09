@@ -3,15 +3,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-__THRESHOLD_VALUE__ = 210
+__THRESHOLD_VALUE__ = 200
 __THRESHOLD_MASK__ = 160
 
-if __name__=='__main__':
+if __name__ == '__main__':
     base_directory = './2017-IWT4S-HDR_LP-dataset/crop_h1'
     images = os.listdir(base_directory)
 
     for image in images:
         with Image.open(''.join([base_directory, '/', image])) as img:
+            width, height = img.size
+            print(width, height)
+
             monochrome_img = img.convert('L').point(
                 lambda x: 255 if (x > __THRESHOLD_VALUE__) else 0, mode='1')
 
@@ -35,8 +38,12 @@ if __name__=='__main__':
             plt.imshow(composite)
             plt.show()
 
-            flip = np.asarray(composite, dtype=np.int).T
-            result = Image.fromarray(flip, 'L')
-            plt.imshow(result)
-            plt.show()
+            flip = np.asarray(composite)
+            result = Image.fromarray(flip.reshape(height, width), '1')
+
+            #plt.imshow(result)
+            #plt.show()
+
+            composite.save(image)
+
             #composite = composite.filter(ImageFilter.FIND_EDGES)
